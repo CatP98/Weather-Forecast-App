@@ -21,8 +21,9 @@ public class WeatherResponseParse {
                 String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date(timestamp + 1000));
                 Double temp = forecast.getJSONObject("main").getDouble("temp");
                 String description = forecast.getJSONArray("weather").getJSONObject(0).getString("description");
+                int humidity = forecast.getJSONObject("main").getInt("humidity");
 
-                System.out.println(date + " :" + temp + "C. " + description);
+                System.out.println(date + " :" + temp + "C. " + description + " humidity: " + humidity);
             }
         } else {
             System.out.println("Request contains an error!");

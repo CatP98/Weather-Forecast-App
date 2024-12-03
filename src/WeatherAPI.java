@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class WeatherAPI {
 
@@ -10,7 +12,11 @@ public class WeatherAPI {
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/forecast";
 
     public String getForecast(String city) throws IOException {
-        String apiURL = BASE_URL + "?q=" + city + "&appid=" + API_KEY + "&units=metric";
+        // Construct the API URL with proper encoding
+        String apiURL = BASE_URL
+                + "?q=" + URLEncoder.encode(city, StandardCharsets.UTF_8.toString())
+                + "&appid=" + API_KEY
+                + "&units=metric";
 
         // Set up the connection
         URL url = new URL(apiURL);
